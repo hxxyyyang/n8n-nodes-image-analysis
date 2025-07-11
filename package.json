@@ -6,10 +6,10 @@
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/hxxyyyang/n8n-nodes-image-analysis",
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "hxxyyyang",
+		"email": "hxxyyyang@163.com"
 	},
 	"repository": {
 		"type": "git",
