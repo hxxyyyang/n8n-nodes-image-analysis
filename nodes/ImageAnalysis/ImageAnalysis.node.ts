@@ -52,10 +52,17 @@ export class ImageAnalysis implements INodeType {
 		const clientConfig = await this.getCredentials('imageAnalysisApi') as ImageAnalysisClientConfig
 
 		const client = new ImageAnalysisClient(clientConfig)
-		const content = await client.analyzeImage(prompt, images)
+
+		let response: any
+		try {
+			const content = await client.analyzeImage(prompt, images)
+			response = { content }
+		} catch (err) {
+			response = { error: String(err) }
+		}
 
 		return [this.helpers.returnJsonArray([{
-			json: { content }
+			json: response
 		}])]
 	}
 }
