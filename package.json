@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-image-analysis",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Image analysis tool based on Azure OpenAI for n8n",
 	"keywords": [
 		"n8n-community-node-package"
