@@ -3,14 +3,14 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class ImageAnalysisApi implements ICredentialType {
+export class AzureOpenAIApi implements ICredentialType {
 	documentationUrl = "https://azure.microsoft.com/en-us/products/ai-services/openai-service";
-	name = 'imageAnalysisApi';
-	displayName = 'ImageAnalysis API';
+	name = 'azureOpenAIApi';
+	displayName = 'Azure OpenAI API';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',
-			name: 'key',
+			name: 'azureOpenAIApiKey',
 			type: 'string',
 			default: '',
 			typeOptions: {
@@ -19,21 +19,21 @@ export class ImageAnalysisApi implements ICredentialType {
 		},
 		{
 			displayName: 'Instance',
-			name: 'instance',
+			name: 'azureOpenAIApiInstanceName',
 			type: 'string',
 			default: "",
 			required: true,
 		},
 		{
 			displayName: 'Deployment',
-			name: 'deployment',
+			name: 'azureOpenAIApiDeploymentName',
 			type: 'string',
 			default: "",
 			required: true,
 		},
 		{
 			displayName: 'Version',
-			name: 'version',
+			name: 'azureOpenAIApiVersion',
 			type: 'string',
 			default: "",
 			required: true,

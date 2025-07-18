@@ -33,7 +33,7 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/ImageAnalysisApi.credentials.js"
+			"dist/credentials/AzureOpenAIApi.credentials.js"
 		],
 		"nodes": [
 			"dist/nodes/ImageAnalysis/ImageAnalysis.node.js"
@@ -45,7 +45,8 @@
 		"eslint-plugin-n8n-nodes-base": "^1.16.3",
 		"gulp": "^5.0.0",
 		"prettier": "^3.5.3",
-		"typescript": "^5.8.2"
+		"typescript": "^5.8.2",
+		"rimraf": "^6.0.1"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
@@ -53,8 +54,6 @@
 	"dependencies": {
 		"@langchain/core": "^0.3.62",
 		"@langchain/openai": "^0.5.18",
-		"n8n-core": "^1.14.1",
-		"request": "^2.88.2",
-		"rimraf": "^6.0.1"
+		"n8n-core": "^1.14.1"
 	}
 }

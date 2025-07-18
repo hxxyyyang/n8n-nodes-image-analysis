@@ -1,6 +1,7 @@
 import { IExecuteFunctions, NodeConnectionType } from 'n8n-workflow';
 import { INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
-import { ImageAnalysisClient, ImageAnalysisClientConfig } from './actions';
+import { AzureChatOpenAI } from '@langchain/openai'
+import { HumanMessage } from '@langchain/core/messages'
 
 export class ImageAnalysis implements INodeType {
 	description: INodeTypeDescription = {
@@ -39,7 +40,7 @@ export class ImageAnalysis implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'imageAnalysisApi',
+				name: 'azureOpenAIApi',
 				required: true,
 			}
 		],
@@ -49,13 +50,11 @@ export class ImageAnalysis implements INodeType {
 		const prompt = this.getNodeParameter('prompt', 0) as string
 		const images = this.getNodeParameter('images', 0) as string
 
-		const clientConfig = await this.getCredentials('imageAnalysisApi') as ImageAnalysisClientConfig
-
-		const client = new ImageAnalysisClient(clientConfig)
+		const clientConfig = await this.getCredentials('azureOpenAIApi') as AzureChatOpenAIConfig
 
 		let response: any
 		try {
-			const content = await client.analyzeImage(prompt, images)
+			const content = await analyzeImage(clientConfig, prompt, images)
 			response = { content }
 		} catch (err) {
 			response = { error: String(err) }
@@ -65,4 +64,31 @@ export class ImageAnalysis implements INodeType {
 			json: response
 		}])]
 	}
+}
+
+export interface AzureChatOpenAIConfig {
+	azureOpenAIApiKey: string
+	azureOpenAIApiDeploymentName: string
+	azureOpenAIApiInstanceName: string
+	azureOpenAIApiVersion: string
+}
+
+async function analyzeImage(config: AzureChatOpenAIConfig, prompt: string, images: string) {
+	const client = new AzureChatOpenAI(config)
+	const imageUrls = images.split(',').map((image) => ({
+		type: 'image_url',
+		image_url: {
+			url: image
+		}
+	}))
+
+	const content = [{
+		type: 'text',
+		text: prompt,
+	}, ...imageUrls]
+
+	const humanMessage = new HumanMessage({ content })
+
+	const response = await client.invoke([humanMessage])
+	return response.content as string
 }
