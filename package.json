@@ -1,19 +1,19 @@
 {
 	"name": "n8n-nodes-image-analysis",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Image analysis tool based on Azure OpenAI for n8n",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
-	"homepage": "https://github.com/hxxyyyang/n8n-nodes-image-analysis",
+	"homepage": "https://github.com/coco-ai-team/n8n-nodes-image-analysis",
 	"author": {
-		"name": "hxxyyyang",
-		"email": "hxxyyyang@163.com"
+		"name": "Coco AI Team",
+		"url": "https://github.com/coco-ai-team"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/hxxyyyang/n8n-nodes-image-analysis.git"
+		"url": "https://github.com/coco-ai-team/n8n-nodes-image-analysis.git"
 	},
 	"engines": {
 		"node": ">=20.15"
